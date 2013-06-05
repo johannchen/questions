@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('questionsApp', [])
+angular.module('questionsApp', ['ngResource'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
