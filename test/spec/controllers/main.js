@@ -35,7 +35,7 @@ describe('Controller: MainCtrl', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, $httpBackend) {
     scope = $rootScope.$new();
-    $httpBackend.whenGET('/api/questions').respond(QUESTIONS);
+    $httpBackend.whenGET('/api/questions/approved').respond(QUESTIONS);
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
     });

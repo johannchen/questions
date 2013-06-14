@@ -3,7 +3,7 @@
 angular.module('questionsApp')
   .controller('MainCtrl', function ($scope, Question) {
   	$scope.randomQuestion = null;
-    $scope.questions = Question.query();
+    $scope.questions = Question.query({status:'approved'});
     $scope.like = function (question) {
     	question.popularity++;
     };
