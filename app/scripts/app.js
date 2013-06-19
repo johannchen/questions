@@ -7,6 +7,10 @@ angular.module('questionsApp', ['ngResource'])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/admin', {
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

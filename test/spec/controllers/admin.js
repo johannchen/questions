@@ -66,6 +66,7 @@ describe('Controller: AdminCtrl', function () {
 
   });
 */
+/*TODO: write test for backend? */
   
   it('should approve a pending question', function() {
     var question = scope.pendingQuestions[0];

@@ -1,0 +1,40 @@
+
+<div id="headrow" class="row">
+	<div class="span6">
+		<h3>Pending Questions</h3>
+	</div>
+	<div class="span6">
+		<h3>Approved Questions</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="span6">
+		<ul>
+			<li ng-repeat="question in pendingQuestions">
+				{{question.question}} - {{question.category}}
+				<a ng-click="approve(question)">Approve</a> |
+				<a ng-click="deleteQuestion(question)">Delete</a>
+			</li>
+		</ul>
+	</div>
+	<div class="span6">
+		<form ng-submit="submitQuestion()">
+			<fieldset>
+				<textarea rows="3" placeholder="New question..." ng-model="newQuestion.question" required></textarea><br>
+				<select ng-model="newQuestion.category">
+					<option>Light</option>
+					<option>Thoughful</option>
+					<option>Heavy</option>
+				</select><br>
+				<button type="submit" class="btn">Submit</button>
+			</fieldset>
+		</form>
+		<ul>
+			<li ng-repeat="question in approvedQuestions">
+				{{question.question}} - {{question.category}}
+				<a ng-click="deleteQuestion(question)">Delete</a>
+			</li>
+		</ul>
+	</div>
+</div>
+

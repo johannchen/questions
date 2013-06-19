@@ -1,9 +1,12 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
+<div class="span12">
+	<div id="random-question">
+		<button class="btn" ng-click="randomize()">Random Question</button>
+		{{randomQuestion.question}}
+	</div>
   <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
+  	<li ng-repeat="question in questions">
+    	{{question.question}} - {{question.category}}
+			<a ng-click="like(question)">like {{question.popularity}}</a>
+    </li>
   </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
 </div>
