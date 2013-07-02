@@ -1,7 +1,18 @@
 <div class="span12">
 	<div id="random-question">
 		<button class="btn" ng-click="randomize()">Random Question</button>
-		{{randomQuestion.question}}
+		<div modal="randomMode" close="exitRandomMode()" options="opts">
+			<div class="modal-header">
+				<h3>Random Question</h3>
+			</div>
+			<div class="modal-body">
+				{{randomQuestion.question}}
+			</div>
+			<div class="modal-footer">
+				<button class="btn cancel" ng-click="exitRandomMode()">Cancel</button>
+				<button class="btn" ng-click="randomize()">Next</button>
+			</div>
+		</div>		
 	</div>
   <ul>
   	<li ng-repeat="question in questions">
