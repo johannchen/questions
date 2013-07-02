@@ -1,6 +1,14 @@
-<div class="span12">
-	<div id="random-question">
-		<button class="btn" ng-click="randomize()">Random Question</button>
+<div class="row">
+	<div class="span12">
+		<form class="form-inline">
+			<select class="span2" ng-model="category">
+				<option value="">All</option>
+				<option>Light</option>
+				<option>Thoughtful</option>
+				<option>Deep</option>
+			</select>
+			<button class="btn" ng-click="randomize()">Random Question</button>
+		</form>		
 		<div modal="randomMode" close="exitRandomMode()" options="opts">
 			<div class="modal-header">
 				<h3>Random Question</h3>
@@ -12,12 +20,17 @@
 				<button class="btn cancel" ng-click="exitRandomMode()">Cancel</button>
 				<button class="btn" ng-click="randomize()">Next</button>
 			</div>
-		</div>		
+		</div>			
 	</div>
-  <ul>
-  	<li ng-repeat="question in questions">
-    	{{question.question}} - {{question.category}}
-			<a ng-click="like(question)">like {{question.popularity}}</a>
-    </li>
-  </ul>
+</div>
+<div class="row">
+	<div class="span12">
+	  <ul class="unstyled">
+	  	<li class="hero-unit" ng-repeat="question in questions | orderBy:'-popularity' | filter:category">
+	    	<p><a ng-click="like(question)">+{{question.popularity}}</a> {{question.question}}
+	    	<span class="label label-info">{{question.category}}</span>
+				</p>
+	    </li>
+	  </ul>
+	</div>
 </div>

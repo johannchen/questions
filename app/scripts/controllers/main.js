@@ -8,22 +8,22 @@ angular.module('questionsApp')
       {
         question: "What was the best thing that happened to you this weekend?",
         status: "approved",
-        category: "ice breaker",
+        category: "Light",
         popularity: 2,
         created_at: "2013-06-07"
       },
           {
         question: "What is your favorite color?",
         status: "approved",
-        category: "ice breaker",
+        category: "Light",
         popularity: 1,
         created_at: "2013-06-07"
       },
       {
         question: "If you could have any job in the world, which one would you want?",
         status: "approved",
-        category: "ice breaker",
-        popularity: 1,
+        category: "Thoughtful",
+        popularity: 3,
         created_at: "2013-06-06"
       }];
 
@@ -31,7 +31,7 @@ angular.module('questionsApp')
       backdropFade: true,
       dialogFade: true
     };
-    
+
     $scope.like = function (question) {
     	question.popularity++;
     };
