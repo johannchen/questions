@@ -7,9 +7,13 @@
 				<option>Thoughtful</option>
 				<option>Deep</option>
 			</select>
+			<select class="span2" ng-model="sortOption">				
+				<option value="-created_at">Recent</option>
+				<option value="-popularity">Popular</option>
+			</select>
 			<button class="btn" ng-click="randomize()">Random Question</button>
 		</form>		
-		<div modal="randomMode" close="exitRandomMode()" options="opts">
+		<div modal="randomMode" close="exitRandomMode()" options="modalOptions">
 			<div class="modal-header">
 				<h3>Random Question</h3>
 			</div>
@@ -26,7 +30,7 @@
 <div class="row">
 	<div class="span12">
 	  <ul class="unstyled">
-	  	<li class="hero-unit" ng-repeat="question in questions | orderBy:'-popularity' | filter:category">
+	  	<li class="hero-unit" ng-repeat="question in questions | orderBy:sortOption | filter:category">
 	    	<p><a ng-click="like(question)">+{{question.popularity}}</a> {{question.question}}
 	    	<span class="label label-info">{{question.category}}</span>
 				</p>
