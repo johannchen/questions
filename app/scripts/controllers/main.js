@@ -54,5 +54,11 @@ angular.module('questionsApp')
 		  $scope.randomQuestion = null;
       $scope.randomMode = false;
     };
-    
+    $scope.openNewQuestion = function() {
+      $scope.isNewQuestion = true;
+    };
+    $scope.cancelNewQuestion = function() {
+      $scope.isNewQuestion = false;
+    };
+
   });
