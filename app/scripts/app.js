@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('questionsApp', ['ngResource', 'ui.bootstrap'])
+angular.module('questionsApp', ['ngResource', 'ui.bootstrap', 'firebase'])
+  .value('fbURL', 'https://questions.firebaseio.com/')
+  .factory('Questions', function(angularFireCollection, fbURL) {
+    return angularFireCollection(fbURL);
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
