@@ -1,40 +1,47 @@
 
-<div id="headrow" class="row">
-	<div class="span6">
-		<h3>Pending Questions</h3>
-	</div>
-	<div class="span6">
-		<h3>Approved Questions</h3>
-	</div>
-</div>
-<div class="row">
-	<div class="span6">
-		<ul>
-			<li ng-repeat="question in pendingQuestions">
-				{{question.question}} - {{question.category}}
-				<a ng-click="approve(question)">Approve</a> |
-				<a ng-click="deleteQuestion(question)">Delete</a>
-			</li>
-		</ul>
-	</div>
-	<div class="span6">
-		<form ng-submit="submitQuestion()">
-			<fieldset>
-				<textarea rows="3" placeholder="New question..." ng-model="newQuestion.question" required></textarea><br>
-				<select ng-model="newQuestion.category">
-					<option>Light</option>
-					<option>Thoughful</option>
-					<option>Heavy</option>
-				</select><br>
-				<button type="submit" class="btn">Submit</button>
-			</fieldset>
-		</form>
-		<ul>
-			<li ng-repeat="question in approvedQuestions">
-				{{question.question}} - {{question.category}}
-				<a ng-click="deleteQuestion(question)">Delete</a>
-			</li>
-		</ul>
-	</div>
-</div>
+<header id="header">
+	<h1>Questions</h1>
+	<form id="question-form" ng-submit="addQuestion()">
+		<div id="new-question">
+		<label class="radio inline">
+			<input type="radio" name="category" value="Light" checked>Light
+		</label>
+		<label class="radio inline">
+			<input type="radio" name="category" value="Thoughtful">Thoughtful
+		</label>
+		<label class="radio inline">
+			<input type="radio" name="category" value="Deep">Deep
+		</label>
+		<input class="edit" placeholder="Good question?" ng-model="newQuestion" autofocus>
+		</div>
+	</form>
+</header>
+<section id="main" ng-show="questions.length" ng-cloak>
+	<ul id="question-list">
+		<li ng-repeat="question in questions" ng-class="">
+			<div class="view">
+				<input type="checkbox" class="toggle"></input>
+				<label ng-dblclick="editQuestion(question)">{{question.question}}</label>
+				<button class="destroy" ng-click="removeQuestion(question)"></button>
+			</div>
+			<form ng-submit="doneEditing(question)">
+				<input class="edit" ng-model="question.question" question-blur="doneEditing(question)" todo-focus="question == editedQuestion">
+			</form>
+		</li>
+	</ul>
+</section>
+<footer id="footer" ng-show="questions.length" ng-cloak>
+	<ul id="filters">
+		<li>
+			<a ng-class="{selected: location.path() == '/'} " href="#/">All</a>
+		</li>
+		<li>
+			<a ng-class="{selected: location.path() == '/pending'}" href="#/pending">Pending</a>
+		</li>
+		<li>
+			<a ng-class="{selected: location.path() == '/approved'}" href="#/approved">Approved</a>
+		</li>
+	</ul>	
+</footer>
+
 

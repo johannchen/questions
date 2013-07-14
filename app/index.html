@@ -14,11 +14,6 @@
     <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <style>
-    body {
-    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-    }
-    </style>
   </head>
   <body ng-app="questionsApp">
     <!--[if lt IE 7]>
@@ -31,31 +26,15 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Questions</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="#about">About</a></li>
-              <li><a href="#admin">Admin</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-    <div class="container" ng-view></div>
-
+    <section id="question-app">
+      <div class="container" ng-view></div>
+    </section>
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
     <script src="http://firebase.github.io/angularFire/angularFire.js"></script>
     <script src="components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="components/todomvc-common/base.js"></script>
 
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
@@ -63,6 +42,7 @@
     <script src="scripts/controllers/admin.js"></script>
     <script src="scripts/services/Question.js"></script>
     <script src="scripts/filters/category.js"></script>
+    <script src="scripts/filters/status.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

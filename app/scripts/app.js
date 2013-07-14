@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('questionsApp', ['ngResource', 'ui.bootstrap', 'firebase'])
-  .value('fbURL', 'https://questions.firebaseio.com/')
+  .value('fbURL', 'https://questions.firebaseio.com/questions')
   .factory('Questions', function(angularFireCollection, fbURL) {
     return angularFireCollection(fbURL);
   })

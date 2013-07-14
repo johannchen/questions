@@ -4,7 +4,7 @@ angular.module('questionsApp')
   .controller('MainCtrl', function ($scope, $filter, Questions) {
   	$scope.randomQuestion = null;
     //$scope.questions = Question.query({status:'approved'});
-    $scope.questions = Questions;
+    $scope.questions = $filter("status")(Questions, "approved");
 
     $scope.modalOptions = {
       backdropFade: true,
