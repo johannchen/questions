@@ -1,6 +1,6 @@
-<div class="row">
-	<div class="span12">
-		<form class="form-inline">
+<header id="header">
+	<h1>Questions</h1>
+	<form class="form-inline">
 			<select class="span2" ng-model="category">
 				<option value="">All</option>
 				<option>Light</option>
@@ -12,23 +12,42 @@
 				<option value="-popularity">Popular</option>
 			</select>
 			<button class="btn" ng-click="randomize()">Random Question</button>
-			<button class="btn" ng-click="openNewQuestion()">New Question</button>
-		</form>		
-		<div modal="isNewQuestion" close="cancelNewQuestion()" options="modalOptions">
-			<div class="modal-header">
-				<h3>New Question</h3>
-			</div>
-			<div class="modal-body">
-				<textarea rows="3" placeholder="New question..." ng-model="newQuestion.question" required></textarea><br>
-				<select ng-model="newQuestion.category">
-					<option>Light</option>
-					<option>Thoughful</option>
-					<option>Deep</option>
-				</select><br>
-				<button class="btn cancel" ng-click="cancelNewQuestion()">Cancel</button>
-				<button class="btn" ng-click="submitQuestion()">Submit</button>
-			</div>
+	</form>
+	<form id="question-form" ng-submit="addQuestion()">
+		<div id="category-option">
+		<label class="radio inline">
+			<input type="radio" ng-model="category" value="Light">Light
+		</label>
+		<label class="radio inline">
+			<input type="radio" ng-model="category" value="Thoughtful">Thoughtful
+		</label>
+		<label class="radio inline">
+			<input type="radio" ng-model="category" value="Deep">Deep
+		</label>
 		</div>
+		<input id="new-question" placeholder="Submit question for approval" ng-model="newQuestion" autofocus>		
+	</form>
+</header>
+<section id="main" ng-show="questions.length" ng-cloak>
+	
+	<ul id="question-list">
+		<li ng-repeat="question in questions | orderBy:sortOption | filter:category">
+			<div class="view">
+				<a href="">+{{question.popularity}}</a>
+				<label>{{question.question}}
+					<span class="label">{{question.category}}</span>
+				</label>
+			</div>
+		</li>
+	</ul>
+</section>
+<footer id="footer" ng-show="questions.length" ng-cloak>
+						
+</footer>
+
+
+<div class="row">
+	<div class="span12">	
 		<div modal="randomMode" close="exitRandomMode()" options="modalOptions">
 			<div class="modal-header">
 				<h3>Random Question</h3>
@@ -41,16 +60,5 @@
 				<button class="btn" ng-click="randomize()">Next</button>
 			</div>
 		</div>			
-	</div>
-</div>
-<div class="row">
-	<div class="span12">
-	  <ul class="unstyled">
-	  	<li class="hero-unit" ng-repeat="question in questions | orderBy:sortOption | filter:category">
-	    	<p><a ng-click="like(question)">+{{question.popularity}}</a> {{question.question}}
-	    	<span class="label label-info">{{question.category}}</span>
-				</p>
-	    </li>
-	  </ul>
 	</div>
 </div>

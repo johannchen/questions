@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('questionsApp')
-  .filter('status', function () {
-    return function (input, status) {
-    	if(!status) return input;
+  .filter('approved', function () {
+    return function (input) {
       var result = [];
       angular.forEach(input, function(question) {
-      	if(question.status === status)
+      	if(question.approved)
       		result.push(question);
       });
       return result;

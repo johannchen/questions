@@ -1,9 +1,7 @@
 'use strict';
 
 angular.module('questionsApp')
-  .controller('AdminCtrl', function ($scope, $filter, $timeout, $location, angularFire, fbURL) {
-    //$scope.pendingQuestions = Question.query({status:'pending'});
-    //$scope.approvedQuestions = Question.query({status:'approved'});
+  .controller('AdminCtrl', function ($scope, $filter, angularFire, fbURL) {
     $scope.category = "Light";
     $scope.statusFilter = {approved: false};
     //$scope.editedQuestion = null;
@@ -11,13 +9,6 @@ angular.module('questionsApp')
 
 //$scope.approvedQuestions = $filter("status")(questions, "approved");
  
-      $scope.approve = function(question) {
-        var index = $scope.pendingQuestions.indexOf(question);
-        question.status = 'approved';
-        $scope.approvedQuestions.unshift(question);
-        $scope.pendingQuestions.splice(index, 1);
-      };
-
       $scope.filterApproved = function () {
         $scope.statusFilter = ($scope.approved) ?
           {approved: true} : {approved: false};
