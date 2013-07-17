@@ -158,6 +158,10 @@ form {
 	box-shadow: none;
 }
 
+#question-edit-form {
+	padding-left: 60px;
+}
+
 #main {
 	position: relative;
 	z-index: 2;
@@ -323,7 +327,7 @@ label[for='toggle-all'] {
 	left: 0;
 	height: 20px;
 	z-index: 1;
-	text-align: center;
+	/*text-align: center;*/
 }
 
 #footer:before {

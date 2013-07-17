@@ -13,35 +13,37 @@
 			<input type="radio" ng-model="category" value="Deep">Deep
 		</label>
 		</div>
-		<input id="new-question" placeholder="Good question?" ng-model="newQuestion" autofocus>		
+		<input id="new-question" placeholder="New question?" ng-model="newQuestion" autofocus>		
 	</form>
 </header>
 <section id="main" ng-show="questions.length" ng-cloak>
+	
 	<ul id="question-list">
-		<li ng-repeat="question in questions" ng-class="{editing: question == editedQuestion}">
-			<div class="view">
-				<input type="checkbox" class="toggle"></input>
-				<label ng-dblclick="editQuestion(question)">{{question.question}}</label>
+		<li ng-repeat="question in questions | filter:statusFilter | orderBy:'-create_at'">
+			<div class="view" ng-hide="isEditing">
+				<input type="checkbox" class="toggle" ng-model="question.approved"></input>
+				<label ng-dblclick="isEditing = true">{{question.question}}
+					<span class="label">{{question.category}}</span>
+				</label>
 				<button class="destroy" ng-click="removeQuestion(question)"></button>
 			</div>
-			<form ng-submit="doneEditing(question)">
-				<input class="edit" ng-model="question.question" question-blur="doneEditing(question)" todo-focus="question == editedQuestion">
+			<form id="question-edit-form" ng-submit="doneEditing(question)" ng-show="isEditing">
+				<input type="text" class="span4" ng-model="question.question">
+				<select class="span2" ng-model="question.category">				
+					<option>Light</option>
+					<option>Thoughtful</option>
+					<option>Deep</option>
+				</select>
+				<br>
+				<input type="submit" value="Done" class="btn">
 			</form>
 		</li>
 	</ul>
 </section>
 <footer id="footer" ng-show="questions.length" ng-cloak>
-	<ul id="filters">
-		<li>
-			<a ng-class="{selected: location.path() == '/'} " href="#/">All</a>
-		</li>
-		<li>
-			<a ng-class="{selected: location.path() == '/pending'}" href="#/pending">Pending</a>
-		</li>
-		<li>
-			<a ng-class="{selected: location.path() == '/approved'}" href="#/approved">Approved</a>
-		</li>
-	</ul>	
+			<label class="checkbox">
+				<input id="status-filter" type="checkbox" ng-model="approved" ng-click="filterApproved()"> Approved
+			</label>	
 </footer>
 
 

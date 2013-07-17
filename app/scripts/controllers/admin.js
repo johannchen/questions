@@ -5,7 +5,8 @@ angular.module('questionsApp')
     //$scope.pendingQuestions = Question.query({status:'pending'});
     //$scope.approvedQuestions = Question.query({status:'approved'});
     $scope.category = "Light";
-    $scope.editedQuestion = null;
+    $scope.statusFilter = {approved: false};
+    //$scope.editedQuestion = null;
     angularFire(fbURL, $scope, 'questions', []).then(function() {
 
 //$scope.approvedQuestions = $filter("status")(questions, "approved");
@@ -16,6 +17,11 @@ angular.module('questionsApp')
         $scope.approvedQuestions.unshift(question);
         $scope.pendingQuestions.splice(index, 1);
       };
+
+      $scope.filterApproved = function () {
+        $scope.statusFilter = ($scope.approved) ?
+          {approved: true} : {approved: false};
+      }
 
       $scope.addQuestion = function() {
         if(!$scope.newQuestion.length) {
@@ -38,9 +44,13 @@ angular.module('questionsApp')
         $scope.questions.splice(index, 1);
       };
 
-      $scope.editQuestion = function(question) {
-        $scope.editedQuestion = question;
+      $scope.doneEditing = function(question) {
+        this.isEditing = false;
+        if(!question.question) {
+          $scope.removeQuestion(question);
+        }
       };
+
     });
     
     
