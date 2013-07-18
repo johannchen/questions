@@ -1,11 +1,9 @@
 'use strict';
 
 angular.module('questionsApp')
-  .controller('MainCtrl', function ($scope, $filter, angularFire, fbURL) {
-  	$scope.randomQuestion = null;
-    //$scope.questions = Question.query({status:'approved'});
-
-    
+  .controller('MainCtrl', function ($scope, $filter, Questions) {
+  	$scope.categoryOption = "Light";
+    $scope.randomQuestion = null;        
 
     $scope.modalOptions = {
       backdropFade: true,
@@ -14,8 +12,26 @@ angular.module('questionsApp')
 
     $scope.sortOption = "-created_at";
 
-    angularFire(fbURL, $scope, 'questions', []).then(function() {
-      $scope.questions = $filter("approved")($scope.questions);
+    //angularFire(fbURL, $scope, 'remote', []).then(function() {
+    
+      $scope.questions = Questions;
+      //$scope.questions = $filter("approved")($scope.questions);
+
+      $scope.addQuestion = function() {
+        if(!$scope.newQuestion.length) {
+          return;
+        }
+
+        $scope.questions.push( {
+          question: $scope.newQuestion,
+          category: $scope.categoryOption,
+          approved: false,
+          popularity: 1,
+          created_at: new Date(),
+        })
+        
+        $scope.newQuestion = null;
+      };
       $scope.like = function (question) {
       	question.popularity++;
       };
@@ -35,5 +51,5 @@ angular.module('questionsApp')
       $scope.cancelNewQuestion = function() {
         $scope.isNewQuestion = false;
       };
-    });
+    //});
   });

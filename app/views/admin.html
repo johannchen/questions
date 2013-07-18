@@ -17,7 +17,7 @@
 	</form>
 </header>
 <section id="main" ng-show="questions.length" ng-cloak>
-	
+	<input id="toggle-all" type="checkbox" ng-model="approved" ng-click="filterApproved()">
 	<ul id="question-list">
 		<li ng-repeat="question in questions | filter:statusFilter | orderBy:'-create_at'">
 			<div class="view" ng-hide="isEditing">
@@ -41,9 +41,9 @@
 	</ul>
 </section>
 <footer id="footer" ng-show="questions.length" ng-cloak>
-			<label class="checkbox">
-				<input id="status-filter" type="checkbox" ng-model="approved" ng-click="filterApproved()"> Approved
-			</label>	
+	<ul id="filters">
+		<li><a href="/">Home</a></li>
+	</ul>			
 </footer>
 
 

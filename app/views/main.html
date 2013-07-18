@@ -1,6 +1,7 @@
 <header id="header">
 	<h1>Questions</h1>
-	<form class="form-inline">
+	<div id="question-filter">
+		<form class="form-inline">
 			<select class="span2" ng-model="category">
 				<option value="">All</option>
 				<option>Light</option>
@@ -11,18 +12,21 @@
 				<option value="-created_at">Recent</option>
 				<option value="-popularity">Popular</option>
 			</select>
-			<button class="btn" ng-click="randomize()">Random Question</button>
-	</form>
-	<form id="question-form" ng-submit="addQuestion()">
+			<button class="btn" ng-click="randomize()">Random</button>
+			<button class="btn" ng-click="addingQuestion = true" ng-hide="addingQuestion">New</button>
+			<button class="btn btn-info" ng-click="addingQuestion = false" ng-show="addingQuestion">Hide</button>
+		</form>
+	</div>
+	<form id="question-form" ng-submit="addQuestion()" ng-show="addingQuestion">
 		<div id="category-option">
 		<label class="radio inline">
-			<input type="radio" ng-model="category" value="Light">Light
+			<input type="radio" ng-model="categoryOption" value="Light">Light
 		</label>
 		<label class="radio inline">
-			<input type="radio" ng-model="category" value="Thoughtful">Thoughtful
+			<input type="radio" ng-model="categoryOption" value="Thoughtful">Thoughtful
 		</label>
 		<label class="radio inline">
-			<input type="radio" ng-model="category" value="Deep">Deep
+			<input type="radio" ng-model="categoryOption" value="Deep">Deep
 		</label>
 		</div>
 		<input id="new-question" placeholder="Submit question for approval" ng-model="newQuestion" autofocus>		
@@ -33,9 +37,10 @@
 	<ul id="question-list">
 		<li ng-repeat="question in questions | orderBy:sortOption | filter:category">
 			<div class="view">
-				<a href="">+{{question.popularity}}</a>
-				<label>{{question.question}}
+				<input type="checkbox" class="toggle"></input>
+				<label>{{question.question}} <br>
 					<span class="label">{{question.category}}</span>
+					<span class="badge badge-info">+{{question.popularity}}</span>
 				</label>
 			</div>
 		</li>

@@ -151,13 +151,17 @@ form {
 }
 
 #new-question {
-	padding: 16px 16px 16px 60px;
+	padding: 8px 8px 8px 60px;
 	border: none;
 	background: rgba(0, 0, 0, 0.02);
 	z-index: 2;
 	box-shadow: none;
 }
 
+#question-filter {
+	padding: 8px 8px 8px 60px;
+	background: rgba(0, 0, 0, 0.02);	
+}
 #question-edit-form {
 	padding-left: 60px;
 }
@@ -327,7 +331,7 @@ label[for='toggle-all'] {
 	left: 0;
 	height: 20px;
 	z-index: 1;
-	/*text-align: center;*/
+	text-align: center;
 }
 
 #footer:before {
