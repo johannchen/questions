@@ -27,12 +27,18 @@
 
     <!-- Add your site or application content here -->
     <section id="question-app">
+      <h1>Questions</h1>
+      <div id="top">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="#">About</a></li>          
+        </ul>
+      </div>
       <div class="container" ng-view></div>
     </section>
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-    <script src="http://firebase.github.io/angularFire/angularFire.js"></script>
+    <script src="http://firebase.github.io/angularFire/angularFire.js"></script>    
     <script src="components/angular-bootstrap/ui-bootstrap.js"></script>
     
 
@@ -43,6 +49,7 @@
     <script src="scripts/services/Question.js"></script>
     <script src="scripts/filters/category.js"></script>
     <script src="scripts/filters/approved.js"></script>
+    <script src="scripts/services/Storage.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

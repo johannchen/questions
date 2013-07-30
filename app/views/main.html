@@ -1,5 +1,5 @@
 <header id="header">
-	<h1>Questions</h1>
+
 	<div id="question-filter">
 		<form class="form-inline">
 			<select class="span2" ng-model="category">
@@ -33,14 +33,14 @@
 	</form>
 </header>
 <section id="main" ng-show="questions.length" ng-cloak>
-	
+	<input id="toggle-all" type="checkbox" ng-model="favorite" ng-click="filterLike()">
 	<ul id="question-list">
-		<li ng-repeat="question in questions | orderBy:sortOption | filter:category">
+		<li ng-repeat="question in questions | orderBy:sortOption | filter:approved | filter:category | filter:myFavorite">
 			<div class="view">
-				<input type="checkbox" class="toggle"></input>
+				<input type="checkbox" class="toggle" ng-click="like(question)"></input>
 				<label>{{question.question}} <br>
 					<span class="label">{{question.category}}</span>
-					<span class="badge badge-info">+{{question.popularity}}</span>
+					<span class="badge badge-info">+{{question.popularity}}</span>					
 				</label>
 			</div>
 		</li>

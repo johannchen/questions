@@ -93,6 +93,13 @@ form {
 	text-rendering: optimizeLegibility;
 }
 
+#top {
+	position: absolute;
+	top: -30px;
+	width: 100%;
+	text-align: right;
+}
+
 #header {
 	padding-top: 15px;
 	border-radius: inherit;
